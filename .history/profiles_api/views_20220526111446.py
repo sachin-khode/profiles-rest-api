@@ -1,4 +1,3 @@
-from email import message
 from urllib import response
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -42,19 +41,3 @@ class HelloViewSet(viewsets.ViewSet):
 
 
         return Response({'message': 'will always be a message','a_viewset': a_viewsets})    
-
-
-
-    def create(self,request):
-        """create a hello message"""
-        serializer = self.serializer_class(data=request.data)   
-
-        if serializer.is_valid():
-            name = serializer.validated_data.get('name')
-            message = f'hello {name}!'
-
-        else:
-            return Response(
-                serializer.errors,
-                status = status.HTTP_400_BAD_REQUEST
-            )
